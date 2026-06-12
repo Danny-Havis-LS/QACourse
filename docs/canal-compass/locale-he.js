@@ -33,7 +33,8 @@ function getPackingGuide(lang) {
       overview: PACKING_GUIDE_HE.overview,
       days: PACKING_GUIDE.days.map((d) => {
         const tr = PACKING_GUIDE_HE.days[d.day];
-        return { ...d, heading: tr.heading, items: tr.items };
+        const blocks = tr.blocks || (tr.items || []).map((text) => ({ type: "item", text }));
+        return { ...d, heading: tr.heading, blocks };
       }),
     };
   }

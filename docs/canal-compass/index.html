@@ -385,25 +385,48 @@
       <p class="mt-1 text-sm leading-relaxed text-slate-700" x-text="packingGuide.overview.interests"></p>
     </div>
 
-    <!-- Day-by-day reference -->
+    <!-- Day-by-day reference (full trip document) -->
     <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-6">
-      <h2 class="mb-3 text-lg font-bold text-slate-900" x-text="ui.itineraryRef"></h2>
+      <h2 class="mb-1 text-lg font-bold text-slate-900" x-text="ui.itineraryRef"></h2>
+      <p class="mb-3 text-xs text-slate-400" x-text="ui.itineraryRefHint"></p>
       <div class="space-y-2">
         <template x-for="d in packingGuide.days" :key="'pg-' + d.day">
-          <details class="group rounded-xl ring-1 ring-slate-200 open:bg-orange-50/50">
+          <details class="group rounded-xl ring-1 ring-slate-200 open:bg-orange-50/50" :open="d.day === 1">
             <summary class="cursor-pointer list-none px-4 py-3 text-sm font-semibold text-slate-800 marker:content-none [&::-webkit-details-marker]:hidden">
               <span class="flex items-center justify-between gap-2">
                 <span x-text="d.heading"></span>
                 <span class="shrink-0 text-orange-400 transition group-open:rotate-180">▾</span>
               </span>
             </summary>
-            <ul class="space-y-1.5 px-4 pb-4">
-              <template x-for="(item, i) in d.items" :key="i">
-                <li class="flex gap-2 text-xs leading-relaxed text-slate-600">
-                  <span class="text-orange-300">•</span><span x-text="item"></span>
-                </li>
+            <div class="space-y-2 px-4 pb-4">
+              <template x-for="(block, bi) in d.blocks" :key="bi">
+                <div>
+                  <p x-show="block.type === 'item'" class="flex gap-2 text-sm leading-relaxed text-slate-700">
+                    <span class="text-orange-400">•</span><span x-text="block.text"></span>
+                  </p>
+                  <div x-show="block.type === 'group'" class="rounded-lg bg-slate-50 px-3 py-2 ring-1 ring-slate-100">
+                    <p class="mb-1 text-xs font-bold uppercase tracking-wide text-orange-600" x-text="block.label"></p>
+                    <ul class="space-y-1">
+                      <template x-for="(sub, si) in block.items" :key="si">
+                        <li class="flex gap-2 text-sm leading-relaxed text-slate-600">
+                          <span class="text-orange-300">◦</span><span x-text="sub"></span>
+                        </li>
+                      </template>
+                    </ul>
+                  </div>
+                  <div x-show="block.type === 'option'" class="rounded-lg bg-sky-50 px-3 py-2 ring-1 ring-sky-100">
+                    <p class="mb-1 text-xs font-bold text-sky-800" x-text="block.title"></p>
+                    <ul class="space-y-1">
+                      <template x-for="(sub, si) in block.items" :key="si">
+                        <li class="flex gap-2 text-sm leading-relaxed text-slate-600">
+                          <span class="text-sky-400">◦</span><span x-text="sub"></span>
+                        </li>
+                      </template>
+                    </ul>
+                  </div>
+                </div>
               </template>
-            </ul>
+            </div>
           </details>
         </template>
       </div>
@@ -442,11 +465,11 @@
 
 </div>
 
-<script src="kid-data.js?v=6"></script>
-<script src="trip-data.js?v=6"></script>
-<script src="packing-guide.js?v=6"></script>
-<script src="i18n-ui.js?v=6"></script>
-<script src="locale-he.js?v=6"></script>
-<script src="app.js?v=6"></script>
+<script src="kid-data.js?v=7"></script>
+<script src="trip-data.js?v=7"></script>
+<script src="packing-guide.js?v=7"></script>
+<script src="i18n-ui.js?v=7"></script>
+<script src="locale-he.js?v=7"></script>
+<script src="app.js?v=7"></script>
 </body>
 </html>
