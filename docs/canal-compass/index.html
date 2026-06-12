@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CanalCompass — Family Trip to Holland</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    [x-cloak] { display: none !important; }
+    .day-rail::-webkit-scrollbar { height: 4px; }
+    .day-rail::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 2px; }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-orange-50 via-white to-sky-50 font-sans text-slate-800">
+
+<div x-data="tripApp()" x-init="init()" x-cloak class="mx-auto max-w-4xl px-4 py-6 sm:py-10">
+
+  <!-- Hero -->
+  <header class="mb-8 overflow-hidden rounded-3xl bg-gradient-to-br from-orange-500 to-orange-600 p-6 text-white shadow-lg sm:p-8">
+    <div class="mb-3 flex flex-wrap items-center gap-2">
+      <span class="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur">🇳🇱 July 7–16, 2026</span>
+      <span x-show="daysUntil > 0" class="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur"
+        x-text="daysUntil + ' days to go'"></span>
+      <span x-show="daysUntil === 0" class="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur">Departure day!</span>
+      <span x-show="daysUntil < 0 && daysUntil > -10" class="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur">On trip!</span>
+    </div>
+    <p class="text-sm font-medium text-orange-100">CanalCompass</p>
+    <h1 class="mt-1 text-3xl font-bold tracking-tight sm:text-4xl" x-text="trip.title"></h1>
+    <p class="mt-2 text-orange-100" x-text="trip.family"></p>
+  </header>
+
+  <!-- Tabs -->
+  <div class="mb-6 flex gap-1 overflow-x-auto rounded-2xl bg-white p-1 shadow-sm ring-1 ring-slate-200">
+    <template x-for="tab in tabs" :key="tab.id">
+      <button @click="activeTab = tab.id"
+        :class="activeTab === tab.id ? 'bg-orange-500 text-white shadow' : 'text-slate-600 hover:bg-orange-50'"
+        class="flex-1 shrink-0 rounded-xl px-4 py-2.5 text-sm font-medium transition"
+        x-text="tab.label"></button>
+    </template>
+  </div>
+
+  <!-- Overview -->
+  <div x-show="activeTab === 'overview'" class="space-y-4">
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <h2 class="mb-3 text-xs font-bold uppercase tracking-wider text-orange-500">Accommodation</h2>
+        <template x-for="a in trip.accommodation" :key="a.place">
+          <div class="mb-3 last:mb-0">
+            <p class="font-semibold text-slate-900" x-text="a.place"></p>
+            <p class="text-sm text-slate-500" x-text="a.nights + ' · ' + a.dates"></p>
+          </div>
+        </template>
+      </div>
+      <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <h2 class="mb-3 text-xs font-bold uppercase tracking-wider text-orange-500">Transport</h2>
+        <ul class="space-y-2">
+          <template x-for="t in trip.transport" :key="t">
+            <li class="flex gap-2 text-sm text-slate-700">
+              <span class="text-orange-400">→</span><span x-text="t"></span>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </div>
+    <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+      <h2 class="mb-2 text-xs font-bold uppercase tracking-wider text-orange-500">Trip focus</h2>
+      <p class="text-sm leading-relaxed text-slate-700" x-text="trip.interests"></p>
+      <div class="mt-3 flex flex-wrap gap-2">
+        <template x-for="s in trip.skip" :key="s">
+          <span class="rounded-full bg-red-50 px-3 py-1 text-xs font-medium text-red-600 ring-1 ring-red-100" x-text="'Skip: ' + s"></span>
+        </template>
+      </div>
+    </div>
+    <div class="rounded-2xl bg-sky-50 p-5 ring-1 ring-sky-100">
+      <h2 class="mb-3 text-xs font-bold uppercase tracking-wider text-sky-600">Highlights at a glance</h2>
+      <div class="flex flex-wrap gap-2">
+        <span class="rounded-xl bg-white px-3 py-2 text-sm font-medium text-slate-700 ring-1 ring-sky-100">🎢 Efteling</span>
+        <span class="rounded-xl bg-white px-3 py-2 text-sm font-medium text-slate-700 ring-1 ring-sky-100">🎢 Walibi World</span>
+        <span class="rounded-xl bg-white px-3 py-2 text-sm font-medium text-slate-700 ring-1 ring-sky-100">🚤 Giethoorn</span>
+        <span class="rounded-xl bg-white px-3 py-2 text-sm font-medium text-slate-700 ring-1 ring-sky-100">🌷 Zaanse Schans</span>
+        <span class="rounded-xl bg-white px-3 py-2 text-sm font-medium text-slate-700 ring-1 ring-sky-100">🔬 NEMO</span>
+        <span class="rounded-xl bg-white px-3 py-2 text-sm font-medium text-slate-700 ring-1 ring-sky-100">🤯 Ripley's</span>
+        <span class="rounded-xl bg-white px-3 py-2 text-sm font-medium text-slate-700 ring-1 ring-sky-100">🛶 Canal cruise</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Itinerary -->
+  <div x-show="activeTab === 'itinerary'">
+    <!-- Day selector rail -->
+    <div class="day-rail mb-4 flex gap-2 overflow-x-auto pb-2">
+      <template x-for="d in days" :key="d.day">
+        <button @click="selectDay(d.day)"
+          :class="activeDay === d.day
+            ? 'bg-orange-500 text-white ring-orange-500'
+            : 'bg-white text-slate-600 ring-slate-200 hover:ring-orange-300'"
+          class="flex shrink-0 flex-col items-center rounded-2xl px-3 py-2 ring-1 transition sm:px-4">
+          <span class="text-[10px] font-semibold uppercase opacity-70" x-text="'Day ' + d.day"></span>
+          <span class="text-xs font-bold" x-text="d.date.split(' ')[1]"></span>
+        </button>
+      </template>
+    </div>
+
+    <!-- Active day detail -->
+    <div class="rounded-3xl bg-white shadow-sm ring-1 ring-slate-200">
+      <div class="border-b border-slate-100 p-5 sm:p-6">
+        <div class="flex flex-wrap items-start justify-between gap-2">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-orange-500"
+              x-text="currentDay.weekday + ', ' + currentDay.date"></p>
+            <h2 class="mt-1 text-2xl font-bold text-slate-900" x-text="currentDay.title"></h2>
+            <p class="mt-1 text-sm text-slate-500" x-text="'📍 ' + currentDay.location"></p>
+          </div>
+          <div class="flex gap-2">
+            <span x-show="currentDay.highlight" class="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-700">Highlight</span>
+            <span x-show="currentDay.relaxed" class="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">Rest day</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-1 p-5 sm:p-6">
+        <template x-for="(item, i) in currentDay.items" :key="i">
+          <div class="flex gap-3 rounded-xl px-3 py-2.5 transition hover:bg-orange-50/50">
+            <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-orange-100 text-xs font-bold text-orange-600" x-text="i + 1"></span>
+            <p class="text-sm leading-relaxed text-slate-700" x-text="item"></p>
+          </div>
+        </template>
+      </div>
+
+      <template x-if="currentDay.options">
+        <div class="border-t border-slate-100 p-5 sm:p-6">
+          <p class="mb-3 text-xs font-bold uppercase tracking-wider text-slate-400">Choose your afternoon</p>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <template x-for="opt in currentDay.options" :key="opt.name">
+              <div class="rounded-2xl bg-sky-50 p-4 ring-1 ring-sky-100">
+                <p class="mb-2 text-sm font-semibold text-sky-800" x-text="opt.name"></p>
+                <ul class="space-y-1.5">
+                  <template x-for="(item, i) in opt.items" :key="i">
+                    <li class="flex gap-2 text-xs text-slate-600">
+                      <span class="text-sky-400">•</span><span x-text="item"></span>
+                    </li>
+                  </template>
+                </ul>
+              </div>
+            </template>
+          </div>
+        </div>
+      </template>
+
+      <div x-show="currentDay.footer" class="border-t border-slate-100 px-5 py-4 sm:px-6">
+        <p class="text-sm italic text-slate-500" x-text="currentDay.footer"></p>
+      </div>
+
+      <!-- Day nav -->
+      <div class="flex justify-between border-t border-slate-100 px-5 py-4 sm:px-6">
+        <button @click="selectDay(Math.max(1, activeDay - 1))" :disabled="activeDay === 1"
+          class="text-sm font-medium text-orange-600 disabled:opacity-30">← Previous day</button>
+        <button @click="selectDay(Math.min(10, activeDay + 1))" :disabled="activeDay === 10"
+          class="text-sm font-medium text-orange-600 disabled:opacity-30">Next day →</button>
+      </div>
+    </div>
+
+    <!-- Mini timeline -->
+    <div class="mt-4 space-y-2">
+      <template x-for="d in days" :key="'mini-' + d.day">
+        <button @click="selectDay(d.day)"
+          :class="activeDay === d.day ? 'ring-2 ring-orange-400 bg-orange-50' : 'bg-white hover:bg-slate-50'"
+          class="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left ring-1 ring-slate-200 transition">
+          <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold"
+            :class="activeDay === d.day ? 'bg-orange-500 text-white' : 'bg-slate-100 text-slate-600'"
+            x-text="d.day"></span>
+          <div class="min-w-0 flex-1">
+            <p class="truncate text-sm font-medium text-slate-900" x-text="d.title"></p>
+            <p class="text-xs text-slate-400" x-text="d.weekday + ', ' + d.date"></p>
+          </div>
+        </button>
+      </template>
+    </div>
+  </div>
+
+  <!-- Packing -->
+  <div x-show="activeTab === 'packing'" class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-6">
+    <div class="mb-4 flex items-center justify-between">
+      <h2 class="text-lg font-bold text-slate-900">Packing checklist</h2>
+      <span class="text-sm text-slate-500" x-text="packedCount + ' / ' + packing.length + ' packed'"></span>
+    </div>
+    <div class="mb-4 h-2 overflow-hidden rounded-full bg-slate-100">
+      <div class="h-full rounded-full bg-orange-500 transition-all"
+        :style="'width:' + (packing.length ? (packedCount / packing.length * 100) : 0) + '%'"></div>
+    </div>
+    <div class="space-y-1">
+      <template x-for="item in packing" :key="item">
+        <label class="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-3 transition hover:bg-orange-50">
+          <input type="checkbox" :checked="isPacked(item)" @change="togglePacking(item)"
+            class="h-4 w-4 rounded border-slate-300 text-orange-500 focus:ring-orange-400" />
+          <span :class="isPacked(item) ? 'text-slate-400 line-through' : 'text-slate-800'" class="text-sm" x-text="item"></span>
+        </label>
+      </template>
+    </div>
+  </div>
+
+  <!-- Notes -->
+  <div x-show="activeTab === 'notes'" class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-6">
+    <h2 class="mb-3 text-lg font-bold text-slate-900">My notes</h2>
+    <p class="mb-3 text-xs text-slate-400">Flight numbers, booking refs, restaurant reservations — saved in your browser.</p>
+    <textarea x-model="notes" @change="saveNotes()" rows="14"
+      placeholder="Add your personal trip notes here..."
+      class="w-full resize-none rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm outline-none focus:border-orange-400 focus:bg-white focus:ring-2 focus:ring-orange-100"></textarea>
+  </div>
+
+</div>
+
+<script src="trip-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
