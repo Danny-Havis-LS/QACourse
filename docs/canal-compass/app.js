@@ -66,5 +66,23 @@ function tripApp() {
     saveNotes() {
       localStorage.setItem("canal-compass-notes", this.notes);
     },
+
+    googleMapsUrl(dest) {
+      return `https://www.google.com/maps/search/?api=1&query=${dest.lat},${dest.lng}`;
+    },
+
+    googleNavigateUrl(dest) {
+      return `https://www.google.com/maps/dir/?api=1&destination=${dest.lat},${dest.lng}&travelmode=driving`;
+    },
+
+    wazeUrl(dest) {
+      return `https://www.waze.com/ul?ll=${dest.lat},${dest.lng}&navigate=yes`;
+    },
+
+    osmEmbedUrl(dest) {
+      const d = 0.04;
+      const bbox = `${dest.lng - d},${dest.lat - d},${dest.lng + d},${dest.lat + d}`;
+      return `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(bbox)}&layer=mapnik&marker=${dest.lat}%2C${dest.lng}`;
+    },
   };
 }

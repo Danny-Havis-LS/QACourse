@@ -24,6 +24,11 @@ const DAYS = [
     date: "July 7",
     title: "Arrival & Medemblik",
     location: "Medemblik",
+    destinations: [
+      { name: "Amsterdam Schiphol Airport", lat: 52.3105, lng: 4.7683, note: "Arrival & car pickup" },
+      { name: "Medemblik", lat: 52.7714, lng: 5.1064, note: "Accommodation base" },
+      { name: "Kasteel Radboud", lat: 52.7697, lng: 5.1028, note: "Castle exterior walk" },
+    ],
     items: [
       "Arrive at Schiphol around noon, collect luggage",
       "Pick up rental car at Schiphol",
@@ -41,6 +46,11 @@ const DAYS = [
     date: "July 8",
     title: "Giethoorn & Dwarsgracht",
     location: "Giethoorn → Dwarsgracht",
+    destinations: [
+      { name: "Giethoorn", lat: 52.7392, lng: 6.0763, note: "Park & village walk" },
+      { name: "Giethoorn boat rental", lat: 52.7378, lng: 6.0830, note: "Electric boat hire" },
+      { name: "Dwarsgracht", lat: 52.7250, lng: 6.0620, note: "Afternoon option" },
+    ],
     items: [
       "Early departure ~07:30 from Medemblik (~1.5–2 hr drive)",
       "Arrive Giethoorn ~09:30–10:00, park in main lot",
@@ -76,6 +86,9 @@ const DAYS = [
     title: "Efteling (Full-Day Theme Park)",
     location: "Efteling",
     highlight: true,
+    destinations: [
+      { name: "Efteling Theme Park", lat: 51.6500, lng: 5.0497, note: "Main entrance, Kaatsheuvel" },
+    ],
     items: [
       "Early departure ~07:30 (~2.5–3 hr drive)",
       "Arrive ~10:30–11:00, enter park",
@@ -92,6 +105,12 @@ const DAYS = [
     date: "July 10",
     title: "Edam, Volendam, Marken & Zaanse Schans",
     location: "North Holland villages",
+    destinations: [
+      { name: "Edam", lat: 52.5122, lng: 5.0481, note: "Cheese village" },
+      { name: "Volendam Harbor", lat: 52.4950, lng: 5.0694, note: "Harbor & lunch" },
+      { name: "Marken", lat: 52.4586, lng: 5.1022, note: "Wooden houses" },
+      { name: "Zaanse Schans", lat: 52.4740, lng: 4.8170, note: "Windmills & workshops" },
+    ],
     items: [
       "08:00 — depart Medemblik",
       "09:30–10:30 Edam — cheese village, old town walk",
@@ -110,8 +129,11 @@ const DAYS = [
     title: "Medemblik Local Day",
     location: "Medemblik",
     relaxed: true,
+    destinations: [
+      { name: "Medemblik Harbor", lat: 52.7708, lng: 5.1050, note: "Waterfront walk" },
+      { name: "Kasteel Radboud", lat: 52.7697, lng: 5.1028, note: "Castle exterior" },
+    ],
     items: [
-      "No long driving — relaxed day",
       "Morning harbor walk, castle exterior",
       "Optional IJsselmeer boat ride or countryside bike ride",
       "Afternoon rest at accommodation",
@@ -126,6 +148,9 @@ const DAYS = [
     title: "Medemblik Local & Prep Day",
     location: "Medemblik",
     relaxed: true,
+    destinations: [
+      { name: "Medemblik town center", lat: 52.7714, lng: 5.1064, note: "Local walk & café" },
+    ],
     items: [
       "Light day before Amsterdam move",
       "Morning — optional walk, bike, or short outing",
@@ -141,6 +166,11 @@ const DAYS = [
     title: "Medemblik → Walibi World → Amsterdam",
     location: "Walibi → Amsterdam",
     highlight: true,
+    destinations: [
+      { name: "Walibi Holland", lat: 52.4402, lng: 5.7628, note: "Theme park, Biddinghuizen" },
+      { name: "Dam Square, Amsterdam", lat: 52.3731, lng: 4.8922, note: "Evening walk" },
+      { name: "Amsterdam city center", lat: 52.3676, lng: 4.9041, note: "Hotel check-in area" },
+    ],
     items: [
       "Check out Medemblik ~08:00–09:00",
       "Drive to Walibi World (~1.5–2 hr)",
@@ -158,8 +188,12 @@ const DAYS = [
     date: "July 14",
     title: "NEMO, Maritime Museum & City Walk",
     location: "Amsterdam",
+    destinations: [
+      { name: "NEMO Science Museum", lat: 52.3742, lng: 4.9124, note: "Morning visit" },
+      { name: "National Maritime Museum", lat: 52.3718, lng: 4.9143, note: "Afternoon visit" },
+      { name: "Amsterdam Central Station", lat: 52.3791, lng: 4.9003, note: "Transit hub" },
+    ],
     items: [
-      "Public transport to NEMO Science Museum (Oosterdok)",
       "10:00–12:30 NEMO — rooftop terrace, hands-on science",
       "Lunch near NEMO or Central Station",
       "14:00–16:30 National Maritime Museum — ships & interactive displays",
@@ -175,8 +209,13 @@ const DAYS = [
     date: "July 15",
     title: "Ripley's & Shopping",
     location: "Amsterdam",
+    destinations: [
+      { name: "Ripley's Believe It or Not!", lat: 52.3728, lng: 4.8936, note: "Dam 21" },
+      { name: "Dam Square", lat: 52.3731, lng: 4.8922, note: "Shopping start point" },
+      { name: "De Bijenkorf", lat: 52.3733, lng: 4.8903, note: "Department store" },
+      { name: "Leidseplein", lat: 52.3638, lng: 4.8830, note: "Shopping & cafés" },
+    ],
     items: [
-      "Walk/transit to Dam Square",
       "Ripley's Believe It or Not! (Dam 21) — 1.5–2 hr",
       "5 floors of oddities, illusions, world records",
       "Lunch around Dam Square 11:30–12:30",
@@ -195,6 +234,10 @@ const DAYS = [
     date: "July 16",
     title: "Departure",
     location: "Schiphol",
+    destinations: [
+      { name: "Amsterdam Schiphol Airport", lat: 52.3105, lng: 4.7683, note: "Departure" },
+      { name: "Schiphol Plaza (trains)", lat: 52.3094, lng: 4.7639, note: "Public transport arrival" },
+    ],
     items: [
       "Breakfast and final room check",
       "Public transport to Schiphol (train/metro)",
