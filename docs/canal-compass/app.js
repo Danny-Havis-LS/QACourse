@@ -6,7 +6,7 @@ function tripApp() {
     days: DAYS,
     packing: PACKING,
     badges: BADGES,
-    packingGuide: PACKING_GUIDE,
+    packingPlan: PACKING_PLAN,
     activeDay: 1,
     activeTab: "itinerary",
     notes: "",
@@ -52,6 +52,18 @@ function tripApp() {
       return score;
     },
 
+    get dailyPacking() {
+      return this.packingPlan.daily.map((d) => {
+        const tripDay = this.days.find((x) => x.day === d.day) || {};
+        return {
+          ...d,
+          title: tripDay.title,
+          weekday: tripDay.weekday,
+          date: tripDay.date,
+        };
+      });
+    },
+
     get scavengerProgress() {
       const day = this.currentDay;
       if (!day.kidZone?.scavenger?.length) return { done: 0, total: 0 };
@@ -94,7 +106,7 @@ function tripApp() {
       this.days = data.days;
       this.packing = data.packing;
       this.badges = data.badges;
-      this.packingGuide = data.packingGuide;
+      this.packingPlan = data.packingPlan;
       document.documentElement.lang = lang;
       document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
       if (save) localStorage.setItem("canal-compass-lang", lang);

@@ -1,44 +1,47 @@
-const PACKING_GUIDE_HE = {
-  overview: {
-    family: "2 מבוגרים (49, 48) + 3 בנים (16, 12, 10)",
-    dates: "7–16 ביולי 2026 (10 ימים)",
-    accommodation: [
-      "7 לילות ב-Medemblik (7–13 ביולי, בוקר)",
-      "3 לילות באמסטרדם (13–16 ביולי)",
+const PACKING_PLAN_HE = {
+  weather: {
+    period: "7–16 ביולי 2026 · הולנד",
+    summary: "קיץ מתון — 17–23°C ברוב הימים, ערבים קרירים וממטרים שמגיעים מהר.",
+    details: [
+      "שכבות עדיפות על מעיל כבד — בוקרים קרירים, אחר-צהריים חמים.",
+      "מעיל גשם קל לכל אחד, בכל יום.",
+      "שמש חזקה על המים ובתורים לפארק — כובעים וקרם הגנה.",
+      "בערב יורד קר, במיוחד ליד IJsselmeer ואחרי ימי פארק.",
     ],
-    transport: [
-      "רכב שכור מ-Schiphol לימי Medemblik והעברה דרך Walibi לאמסטרדם",
-      "תחבורה ציבורית, הליכה ואופניים באמסטרדם",
-    ],
-    interests:
-      "פעילויות בחוץ, פארקי שעשועים, כפרים, תעלות, סיור עירוני, מוזיאונים אינטראקטיביים. מעט אמנות והיסטוריה כבדה. בלי גן חיות.",
   },
-  days: {
-    1: { heading: "יום 1 – שלישי, 7 ביולי: הגעה ו-Medemblik", items: ["הגעה ל-Schiphol בצהריים", "איסוף רכב ונסיעה ל-Medemblik", "טיול בנמל וטירת Radboud", "שייט אופציונלי וארוחת ערב קלילה"] },
-    2: { heading: "יום 2 – רביעי, 8 ביולי: Giethoorn ו-Dwarsgracht", items: ["יציאה מוקדמת ~07:30", "סיור ושייט בסירה חשמלית ב-Giethoorn", "אופציה א: עוד שייט ב-Dwarsgracht", "אופציה ב: הליכה ב-Dwarsgracht", "חזרה ל-Medemblik עד ~17:30"] },
-    3: { heading: "יום 3 – חמישי, 9 ביולי: Efteling", items: ["יציאה ~07:30, יום מלא בפארק", "יער האגדות, Droomvlucht, מגלגלות", "ארוחת ערב ומופע Aquanura אופציונלי", "חזרה מאוחרת ל-Medemblik"] },
-    4: { heading: "יום 4 – שישי, 10 ביולי: Edam, Volendam, Marken, Zaanse Schans", items: ["Edam — כפר גבינה", "Volendam — נמל וארוחת צהריים", "Marken — בתי עץ", "Zaanse Schans — טחנות וסדנאות"] },
-    5: { heading: "יום 5 – שבת, 11 ביולי: יום מקומי ב-Medemblik", items: ["בלי נסיעות ארוכות", "טיול בנמל ואופציונלי שייט/אופניים", "מנוחה וארוחת ערב"] },
-    6: { heading: "יום 6 – ראשון, 12 ביולי: הכנות", items: ["יום קל לפני אמסטרדם", "אריזת מזוודות", "ארוחת ערב מוקדמת"] },
-    7: { heading: "יום 7 – שני, 13 ביולי: Walibi → אמסטרדם", items: ["צ'ק-אאוט מ-Medemblik", "Walibi — מתקנים ומים", "נסיעה לאמסטרדם, צ'ק-אין", "טיול ערב ב-Dam Square"] },
-    8: { heading: "יום 8 – שלישי, 14 ביולי: NEMO, מוזיאון ימי", items: ["NEMO בבוקר — גג ומדע", "מוזיאון ימי אחר הצהריים", "שייט תעלות אופציונלי וארוחת ערב"] },
-    9: { heading: "יום 9 – רביעי, 15 ביולי: Ripley's וקניות", items: ["Ripley's ב-Dam 21", "קניות: Damrak, Kalverstraat, Leidseplein", "אריזה לטיסה וארוחת ערב"] },
-    10: { heading: "יום 10 – חמישי, 16 ביולי: יציאה", items: ["ארוחת בוקר וצ'ק-אאוט", "רכבת ל-Schiphol", "טיסה הביתה"] },
+  people: [
+    { id: "dad", label: "אבא (49)", emoji: "👨", essentials: ["דרכון / ת.ז. + רישיון נהיגה", "מתאם EU C/F", "מעיל גשם קל + שכבה חמה", "2–3 חולצות, מכנסי הליכה, תחתונים, פijamas", "נעלי הליכה נוחות ועמידות במים", "מוצרי טיפוח ותרופות", "טלפון, סוללה ניידת, ארנק"] },
+    { id: "mum", label: "אמא (48)", emoji: "👩", essentials: ["דרכון / ת.ז.", "מתאם EU C/F", "מעיל גשם קל + שכבה חמה", "2–3 חולצות, מכנסיים/חצאית, תחתונים, פijamas", "נעלי הליכה נוחות", "מוצרי טיפוח ותרופות", "טלפון, סוללה ניידת, תיק צד לימי עיר"] },
+    { id: "teen", label: "בן 16", emoji: "🧑", essentials: ["דרכון / ת.ז.", "מעיל גשם + קפוצ'ון", "3 חולצות, מכנסיים/מכנסיים קצרים, תחתונים", "נעלי ספורט", "טלפון, מטען, אוזניות", "תרמיל קטן", "משקפי שמש וכובע"] },
+    { id: "boy12", label: "בן 12", emoji: "👦", essentials: ["דרכון / ת.ז.", "מעיל גשם + קפוצ'ון", "3 חולצות, מכנסיים, תחתונים", "נעלי ספורט", "תרמיל קטן", "כובע, משקפי שמש, בקבוק מים", "תרופות לבחילה (ימי שייט)"] },
+    { id: "boy10", label: "בן 10", emoji: "👦", essentials: ["דרכון / ת.ז.", "מעיל גשם + קפוצ'ון", "3 חולצות, מכנסיים, תחתונים", "נעלי ספורט", "תרמיל קטן", "כובע, משקפי שמש, בקבוק מים", "תרופות לבחילה", "חטיפים לנסיעות ארוכות"] },
+  ],
+  daily: {
+    1: { weather: "18–22°C · רוח מהאגם · גשם אפשרי", wear: "בגדי נסיעה נוחים; נעליים לטיול בנמל.", pack: ["מעילי גשם בתיק", "בקבוקי מים", "תרופות לבחילה אם שייט ב-IJsselmeer"] },
+    2: { weather: "17–22°C · יום בחוץ על המים", wear: "בגדים שיכולים להתרטב קלות; נעליים לא חלקלקות.", pack: ["כובעים וקרם הגנה", "שכבת גשם קלה", "תרופות לבחילה", "חטיפים ליציאה מוקדמת (~07:30)"] },
+    3: { weather: "17–24°C · יום ארוך בפארק, קריר בערב", wear: "נעלי ספורט; קפוצ'ון קל לנסיעה חזרה (~23:30).", pack: ["תרמיל קטן לכל ילד", "סוללה ניידת", "שכבה לערב", "חטיפים ומים לפארק"] },
+    4: { weather: "18–23°C · כפרים וטחנות, הרבה הליכה", wear: "נעלי ההליכה הטובות ביותר; הגנה מהשמש.", pack: ["תרמיל", "קרם הגנה", "מעיל גשם", "מצלמה/טלפון לטחנות"] },
+    5: { weather: "18–23°C · יום מקומי רגוע", wear: "קז'ואל; אותן נעלי הליכה.", pack: ["שכבה קלה אופציונלית לערב בנמל"] },
+    6: { weather: "18–23°C · יום הכנות", wear: "קז'ואל; הכינו outfit נקי לאמסטרדם.", pack: ["התחילו לארוז hand luggage לאמסטרדם", "בדקו שמטענים ומתאמים ארוזים"] },
+    7: { weather: "19–25°C · Walibi + ערב בעיר", wear: "בגד ים מתחת; הכינו change of clothes.", pack: ["ציוד שחייה ומגבות לכולם", "נרתיק אטום לטלפון", "שקית לבגדים רטובים", "OV-chipkaart/כרטיס ללא מגע"] },
+    8: { weather: "18–24°C · NEMO (מים בגג) + הליכה", wear: "בגדים שיכולים להרטב ב-NEMO; חולצת spare לילדים.", pack: ["חולצה נוספת לכל ילד", "מעיל גשם קל", "נעלי הליכה לעיר", "תרמיל קטן"] },
+    9: { weather: "18–24°C · Ripley's + קניות", wear: "נעלי עיר נוחות; שכבות לטיול תעלות.", pack: ["שקית מתקפלת למזכרות", "דרכונים נגישים לcheckout"] },
+    10: { weather: "17–22°C · נסיעה הביתה", wear: "בגדי נסיעה נוחים.", pack: ["דרכונים ב-hand luggage", "חטיפים ל-Schiphol", "טענו מכשירים בלילה"] },
   },
 };
 
-function getPackingGuide(lang) {
+function getPackingPlan(lang) {
   if (lang === "he") {
     return {
-      overview: PACKING_GUIDE_HE.overview,
-      days: PACKING_GUIDE.days.map((d) => {
-        const tr = PACKING_GUIDE_HE.days[d.day];
-        const blocks = tr.blocks || (tr.items || []).map((text) => ({ type: "item", text }));
-        return { ...d, heading: tr.heading, blocks };
-      }),
+      weather: PACKING_PLAN_HE.weather,
+      people: PACKING_PLAN_HE.people,
+      daily: PACKING_PLAN.daily.map((d) => ({
+        ...d,
+        ...(PACKING_PLAN_HE.daily[d.day] || {}),
+      })),
     };
   }
-  return PACKING_GUIDE;
+  return PACKING_PLAN;
 }
 
 const TRIP_HE = {
@@ -355,8 +358,8 @@ function getLocaleData(lang) {
       days: DAYS.map((d) => mergeLocalizedDay(d, DAY_HE[d.day])),
       packing: PACKING.map((p) => ({ ...p, label: PACKING_HE[p.id] || p.label })),
       badges: BADGES.map((b) => ({ ...b, name: BADGE_NAMES_HE[b.id] || b.name })),
-      packingGuide: getPackingGuide("he"),
+      packingPlan: getPackingPlan("he"),
     };
   }
-  return { trip: TRIP, days: DAYS, packing: PACKING, badges: BADGES, packingGuide: getPackingGuide("en") };
+  return { trip: TRIP, days: DAYS, packing: PACKING, badges: BADGES, packingPlan: getPackingPlan("en") };
 }
