@@ -39,9 +39,26 @@ const DAYS = [
       "Optional short boat ride on Lake IJsselmeer",
       "Casual dinner in Medemblik — early night",
     ],
+    kidZone: {
+      badge: BADGES[0],
+      mission: "Count how many planes land in 5 minutes at Schiphol (from the window or parking area)!",
+      trivia: [
+        { q: "Schiphol airport is below sea level — true or false?", a: "True! Much of Holland is below sea level, and the runways are like a giant bathtub." },
+        { q: "What country has more bikes than people?", a: "The Netherlands! There are about 1.3 bikes for every person." },
+      ],
+      links: [
+        { emoji: "✈️", label: "Schiphol plane spotting tips", url: "https://www.schiphol.nl/en/page/planespotting/" },
+        { emoji: "🏰", label: "Kasteel Radboud info", url: "https://www.kasteelradboud.nl/en/" },
+      ],
+      scavenger: [
+        "Spot 3 different airline tail logos",
+        "See Kasteel Radboud from outside",
+        "Find the harbor in Medemblik",
+        "Say 'Dank je wel' to someone",
+      ],
+      teenTip: "Help navigate the rental car pickup — co-pilot duty starts today!",
+    },
   },
-  {
-    day: 2,
     weekday: "Wednesday",
     date: "July 8",
     title: "Giethoorn & Dwarsgracht",
@@ -78,6 +95,25 @@ const DAYS = [
       },
     ],
     footer: "Drive back to Medemblik by ~17:30. Relax and dinner.",
+    kidZone: {
+      badge: BADGES[1],
+      mission: "Captain for 10 minutes — one kid steers the electric boat (with an adult)!",
+      trivia: [
+        { q: "Giethoorn is called the 'Venice of the North' — but what's unusual about its roads?", a: "There are almost no roads! Mail used to be delivered by boat." },
+        { q: "How many bridges does Giethoorn have?", a: "Over 180 little bridges — see how many you can count!" },
+      ],
+      links: [
+        { emoji: "🚤", label: "Giethoorn official guide", url: "https://www.giethoorn.com/en/" },
+        { emoji: "🎬", label: "Giethoorn village tour (YouTube)", url: "https://www.youtube.com/watch?v=K3yTKsSWD10" },
+      ],
+      scavenger: [
+        "Spot a thatched-roof house",
+        "Count 10 bridges",
+        "Drive the boat for 5+ minutes",
+        "Take a family photo on the water",
+      ],
+      teenTip: "Film a 30-second boat tour vlog for the family album.",
+    },
   },
   {
     day: 3,
@@ -98,6 +134,27 @@ const DAYS = [
       "Optional Aquanura evening water show",
       "Depart ~20:30, arrive Medemblik ~23:00–23:30",
     ],
+    kidZone: {
+      badge: BADGES[2],
+      mission: "Before entering, each kid picks their TOP 3 must-ride attractions — compare scores at the end of the day!",
+      trivia: [
+        { q: "Efteling opened in 1952 — is it older or younger than Disneyland?", a: "Older! Disneyland opened in 1955. Efteling is one of the oldest theme parks in the world." },
+        { q: "What is the Fairytale Forest (Sprookjesbos)?", a: "A magical forest where fairy tales come alive — with animatronic scenes from stories like Sleeping Beauty!" },
+      ],
+      links: [
+        { emoji: "🎢", label: "Efteling rides by height", url: "https://www.efteling.com/en/park/rides" },
+        { emoji: "🗺️", label: "Efteling park map", url: "https://www.efteling.com/en/park/map" },
+        { emoji: "💦", label: "Aquanura water show", url: "https://www.efteling.com/en/park/shows/aquanura" },
+      ],
+      scavenger: [
+        "Ride Droomvlucht (Dream Flight)",
+        "Walk through Fairytale Forest",
+        "Ride at least 1 roller coaster",
+        "Try a Dutch snack in the park",
+        "Stay for Aquanura (if energy allows!)",
+      ],
+      teenTip: "Challenge: ride Baron 1898 or Python — Efteling's biggest coasters!",
+    },
   },
   {
     day: 4,
@@ -121,6 +178,27 @@ const DAYS = [
       "Early dinner near Zaanse Schans or en route",
       "Return Medemblik ~20:00–20:30",
     ],
+    kidZone: {
+      badge: BADGES[3],
+      mission: "Cheese tasting scoreboard — rate each cheese 1–10 and crown a family champion!",
+      trivia: [
+        { q: "Zaanse Schans windmills once ground pigments for paint — which famous artist used them?", a: "Rembrandt! The windmills made red pigment for his paintings." },
+        { q: "Why do Dutch houses in Marken look like they're wearing hats?", a: "The pointed wooden roofs shed rain and snow — and they look awesome!" },
+      ],
+      links: [
+        { emoji: "🧀", label: "Zaanse Schans official site", url: "https://www.dezaanseschans.nl/en/" },
+        { emoji: "👟", label: "How Dutch clogs are made", url: "https://www.youtube.com/watch?v=vanSdW50lD0" },
+        { emoji: "🏘️", label: "Volendam village info", url: "https://www.volendam.info/en/" },
+      ],
+      scavenger: [
+        "Try Edam cheese in Edam",
+        "Spot traditional Dutch costumes in Volendam",
+        "Find a green wooden house in Marken",
+        "Count 5 windmills at Zaanse Schans",
+        "Watch a clog-making demo",
+      ],
+      teenTip: "Photo challenge: best reflection shot in Volendam harbor.",
+    },
   },
   {
     day: 5,
@@ -140,6 +218,25 @@ const DAYS = [
       "Light local exploring or café break",
       "Dinner and relax",
     ],
+    kidZone: {
+      badge: BADGES[4],
+      mission: "First to spot a bakfiets (cargo bike with kids in the front) wins bragging rights!",
+      trivia: [
+        { q: "Kasteel Radboud in Medemblik is over 700 years old — who built castles like this?", a: "Knights and counts! Radboud was built around 1288 to defend the town." },
+        { q: "Lake IJsselmeer used to be the salty Zuiderzee sea — what happened to it?", a: "The Dutch built a huge dam (Afsluitdijk) in 1932 and turned it into a freshwater lake!" },
+      ],
+      links: [
+        { emoji: "🚲", label: "Dutch cycling culture (Nat Geo Kids)", url: "https://kids.nationalgeographic.com/pages/article/netherlands" },
+        { emoji: "🏰", label: "Medemblik castle history", url: "https://www.kasteelradboud.nl/en/" },
+      ],
+      scavenger: [
+        "Spot a bakfiets (cargo bike)",
+        "Walk the full harbor front",
+        "Find a boat on IJsselmeer",
+        "Eat a Dutch snack (bitterbal, frikandel, or stroopwafel)",
+      ],
+      teenTip: "Lead the family on a bike ride — you navigate!",
+    },
   },
   {
     day: 6,
@@ -158,6 +255,25 @@ const DAYS = [
       "Final Medemblik café by the water",
       "Early dinner, rest for check-out tomorrow",
     ],
+    kidZone: {
+      badge: BADGES[5],
+      mission: "Pack your own bag completely — then race to see who finishes first (neatly)!",
+      trivia: [
+        { q: "Amsterdam has more canals than Venice — about how many?", a: "About 165 canals! Plus 1,500 bridges." },
+        { q: "Why are Amsterdam houses so narrow?", a: "Taxes used to be based on how wide the front of your house was — so people built tall and skinny!" },
+      ],
+      links: [
+        { emoji: "🏠", label: "Amsterdam canal houses explained", url: "https://www.youtube.com/watch?v=OH-PlPyjcV8" },
+        { emoji: "🎒", label: "Packing game — tick your list!", url: "#packing-tab" },
+      ],
+      scavenger: [
+        "Pack your own suitcase",
+        "One final harbor photo",
+        "Learn 1 Dutch word (hallo, bedankt, alstublieft)",
+        "Help carry something to the car tomorrow",
+      ],
+      teenTip: "Check the Amsterdam hotel address and save it in your phone maps.",
+    },
   },
   {
     day: 7,
@@ -181,6 +297,27 @@ const DAYS = [
       "Evening walk: Damrak, Dam Square, canals, Royal Palace exterior",
       "Dinner near hotel",
     ],
+    kidZone: {
+      badge: BADGES[6],
+      mission: "Walibi water ride challenge — who gets the wettest on the splash attractions?",
+      trivia: [
+        { q: "Walibi Holland has a ride called Speed of Sound — how fast does it go?", a: "Over 130 km/h (80 mph)! It's one of the fastest coasters in the Netherlands." },
+        { q: "Dam Square has been Amsterdam's heart for how long?", a: "About 750 years! The Royal Palace was once the city hall." },
+      ],
+      links: [
+        { emoji: "🎢", label: "Walibi Holland rides", url: "https://www.walibi.nl/en/rides" },
+        { emoji: "💦", label: "Walibi water attractions", url: "https://www.walibi.nl/en/rides?category=water" },
+        { emoji: "🏛️", label: "Dam Square history", url: "https://www.iamsterdam.com/en/explore/amsterdam/dam-square" },
+      ],
+      scavenger: [
+        "Ride at least 3 Walibi attractions",
+        "Get wet on a water ride",
+        "Spot Dam Square's Royal Palace at night",
+        "Walk along a canal in Amsterdam",
+        "Try patat met (Dutch fries with sauce)",
+      ],
+      teenTip: "Navigate from Walibi to Amsterdam hotel using Waze — co-pilot challenge!",
+    },
   },
   {
     day: 8,
@@ -202,6 +339,27 @@ const DAYS = [
       "Dinner in De Pijp, Oud-West, or near Dam Square",
       "Evening canal stroll",
     ],
+    kidZone: {
+      badge: BADGES[7],
+      mission: "NEMO rooftop challenge — try every outdoor experiment on the roof terrace!",
+      trivia: [
+        { q: "NEMO's building looks like a ship bow rising from the water — who designed it?", a: "Renzo Piano, a famous Italian architect. The rooftop is a FREE science playground!" },
+        { q: "The Maritime Museum has a replica of an East India Company ship — how big is it?", a: "The Amsterdam ship is a full-size replica — you can climb aboard and explore!" },
+      ],
+      links: [
+        { emoji: "🔬", label: "NEMO Science Museum", url: "https://www.nemosciencemuseum.nl/en/" },
+        { emoji: "🚢", label: "National Maritime Museum", url: "https://www.hetscheepvaartmuseum.nl/en/" },
+        { emoji: "🛶", label: "Amsterdam canal cruise", url: "https://www.iamsterdam.com/en/plan-your-trip/getting-around/canal-cruise" },
+      ],
+      scavenger: [
+        "Do 3 experiments on NEMO's rooftop",
+        "Climb aboard the ship at Maritime Museum",
+        "Find a real anchor or cannon",
+        "Take a canal boat tour (optional)",
+        "Spot 5 houseboats from a bridge",
+      ],
+      teenTip: "Explain one science exhibit to the family — teach what you learned!",
+    },
   },
   {
     day: 9,
@@ -227,6 +385,27 @@ const DAYS = [
       "Return to hotel, pack for flight",
       "Early dinner, optional final canal walk",
     ],
+    kidZone: {
+      badge: BADGES[8],
+      mission: "Ripley's challenge — each kid finds the WEIRdest exhibit. Family vote at dinner!",
+      trivia: [
+        { q: "Ripley's has a spinning vortex tunnel — does the room actually spin?", a: "Trick question! The bridge spins, not the room — your brain gets totally fooled!" },
+        { q: "What is a stroopwafel?", a: "Two thin waffles stuck together with caramel syrup — best eaten warm on top of a coffee cup!" },
+      ],
+      links: [
+        { emoji: "🤯", label: "Ripley's Amsterdam", url: "https://www.ripleys.com/amsterdam/" },
+        { emoji: "🧇", label: "Stroopwafel — how they're made", url: "https://www.youtube.com/watch?v=LVF5S2T2qZo" },
+        { emoji: "🛍️", label: "Kalverstraat shopping", url: "https://www.iamsterdam.com/en/shopping/kalverstraat" },
+      ],
+      scavenger: [
+        "Find the weirdest Ripley's exhibit (vote!)",
+        "Walk through the spinning tunnel",
+        "Buy 1 souvenir",
+        "Try a fresh stroopwafel",
+        "Find the narrowest house on a canal (Amsterdam has the world's narrowest!)",
+      ],
+      teenTip: "Budget challenge: find the best souvenir under €10.",
+    },
   },
   {
     day: 10,
@@ -245,6 +424,25 @@ const DAYS = [
       "Check in, security, gate",
       "Fly home",
     ],
+    kidZone: {
+      badge: BADGES[9],
+      mission: "Family vote: BEST DAY of the whole trip — debate on the train to Schiphol!",
+      trivia: [
+        { q: "The Netherlands is only 1 hour ahead of UK time — why?", a: "Time zones! Holland uses Central European Time (CET)." },
+        { q: "How much of the Netherlands is below sea level?", a: "About 26% — the Dutch are experts at keeping water out!" },
+      ],
+      links: [
+        { emoji: "✈️", label: "Schiphol airport info", url: "https://www.schiphol.nl/en/" },
+        { emoji: "🇳🇱", label: "Netherlands fun facts for kids", url: "https://kids.nationalgeographic.com/geography/countries/article/netherlands" },
+      ],
+      scavenger: [
+        "Cast your BEST DAY vote",
+        "Spot your gate number first",
+        "One last Dutch snack at the airport",
+        "Write down 3 favorite memories",
+      ],
+      teenTip: "Create a 'Trip Highlights' photo album before the flight.",
+    },
   },
 ];
 
