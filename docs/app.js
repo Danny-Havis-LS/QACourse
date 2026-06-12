@@ -6,6 +6,7 @@ function tripApp() {
     days: DAYS,
     packing: PACKING,
     badges: BADGES,
+    packingGuide: PACKING_GUIDE,
     activeDay: 1,
     activeTab: "itinerary",
     notes: "",
@@ -93,6 +94,7 @@ function tripApp() {
       this.days = data.days;
       this.packing = data.packing;
       this.badges = data.badges;
+      this.packingGuide = data.packingGuide;
       document.documentElement.lang = lang;
       document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
       if (save) localStorage.setItem("canal-compass-lang", lang);

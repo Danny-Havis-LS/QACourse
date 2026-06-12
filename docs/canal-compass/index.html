@@ -354,7 +354,63 @@
   </div>
 
   <!-- Packing -->
-  <div x-show="activeTab === 'packing'" class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-6">
+  <div x-show="activeTab === 'packing'" class="space-y-4">
+    <!-- Trip guide (from trip document) -->
+    <div class="rounded-2xl bg-gradient-to-br from-orange-50 to-sky-50 p-5 shadow-sm ring-1 ring-orange-100 sm:p-6">
+      <h2 class="text-lg font-bold text-slate-900" x-text="ui.tripGuide"></h2>
+      <p class="mt-1 mb-4 text-xs text-slate-500" x-text="ui.tripGuideHint"></p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="rounded-xl bg-white p-4 ring-1 ring-orange-100">
+          <p class="text-xs font-bold uppercase tracking-wider text-orange-500" x-text="ui.familyLabel"></p>
+          <p class="mt-1 text-sm text-slate-700" x-text="packingGuide.overview.family"></p>
+          <p class="mt-3 text-xs font-bold uppercase tracking-wider text-orange-500" x-text="ui.datesLabel"></p>
+          <p class="mt-1 text-sm text-slate-700" x-text="packingGuide.overview.dates"></p>
+        </div>
+        <div class="rounded-xl bg-white p-4 ring-1 ring-orange-100">
+          <p class="text-xs font-bold uppercase tracking-wider text-orange-500" x-text="ui.accommodation"></p>
+          <ul class="mt-1 space-y-1">
+            <template x-for="a in packingGuide.overview.accommodation" :key="a">
+              <li class="flex gap-2 text-sm text-slate-700"><span class="text-orange-400">•</span><span x-text="a"></span></li>
+            </template>
+          </ul>
+          <p class="mt-3 text-xs font-bold uppercase tracking-wider text-orange-500" x-text="ui.transport"></p>
+          <ul class="mt-1 space-y-1">
+            <template x-for="t in packingGuide.overview.transport" :key="t">
+              <li class="flex gap-2 text-sm text-slate-700"><span class="text-orange-400">•</span><span x-text="t"></span></li>
+            </template>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-4 text-xs font-bold uppercase tracking-wider text-orange-500" x-text="ui.tripFocus"></p>
+      <p class="mt-1 text-sm leading-relaxed text-slate-700" x-text="packingGuide.overview.interests"></p>
+    </div>
+
+    <!-- Day-by-day reference -->
+    <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-6">
+      <h2 class="mb-3 text-lg font-bold text-slate-900" x-text="ui.itineraryRef"></h2>
+      <div class="space-y-2">
+        <template x-for="d in packingGuide.days" :key="'pg-' + d.day">
+          <details class="group rounded-xl ring-1 ring-slate-200 open:bg-orange-50/50">
+            <summary class="cursor-pointer list-none px-4 py-3 text-sm font-semibold text-slate-800 marker:content-none [&::-webkit-details-marker]:hidden">
+              <span class="flex items-center justify-between gap-2">
+                <span x-text="d.heading"></span>
+                <span class="shrink-0 text-orange-400 transition group-open:rotate-180">▾</span>
+              </span>
+            </summary>
+            <ul class="space-y-1.5 px-4 pb-4">
+              <template x-for="(item, i) in d.items" :key="i">
+                <li class="flex gap-2 text-xs leading-relaxed text-slate-600">
+                  <span class="text-orange-300">•</span><span x-text="item"></span>
+                </li>
+              </template>
+            </ul>
+          </details>
+        </template>
+      </div>
+    </div>
+
+    <!-- Checklist -->
+    <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-6">
     <div class="mb-4 flex items-center justify-between">
       <h2 class="text-lg font-bold text-slate-900" x-text="ui.packingList"></h2>
       <span class="text-sm text-slate-500" x-text="packedCount + ' / ' + packing.length + ' ' + ui.packed"></span>
@@ -372,6 +428,7 @@
         </label>
       </template>
     </div>
+    </div>
   </div>
 
   <!-- Notes -->
@@ -385,10 +442,11 @@
 
 </div>
 
-<script src="kid-data.js?v=5"></script>
-<script src="trip-data.js?v=5"></script>
-<script src="i18n-ui.js?v=5"></script>
-<script src="locale-he.js?v=5"></script>
-<script src="app.js?v=5"></script>
+<script src="kid-data.js?v=6"></script>
+<script src="trip-data.js?v=6"></script>
+<script src="packing-guide.js?v=6"></script>
+<script src="i18n-ui.js?v=6"></script>
+<script src="locale-he.js?v=6"></script>
+<script src="app.js?v=6"></script>
 </body>
 </html>

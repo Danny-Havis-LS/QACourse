@@ -1,3 +1,45 @@
+const PACKING_GUIDE_HE = {
+  overview: {
+    family: "2 מבוגרים (49, 48) + 3 בנים (16, 12, 10)",
+    dates: "7–16 ביולי 2026 (10 ימים)",
+    accommodation: [
+      "7 לילות ב-Medemblik (7–13 ביולי, בוקר)",
+      "3 לילות באמסטרדם (13–16 ביולי)",
+    ],
+    transport: [
+      "רכב שכור מ-Schiphol לימי Medemblik והעברה דרך Walibi לאמסטרדם",
+      "תחבורה ציבורית, הליכה ואופניים באמסטרדם",
+    ],
+    interests:
+      "פעילויות בחוץ, פארקי שעשועים, כפרים, תעלות, סיור עירוני, מוזיאונים אינטראקטיביים. מעט אמנות והיסטוריה כבדה. בלי גן חיות.",
+  },
+  days: {
+    1: { heading: "יום 1 – שלישי, 7 ביולי: הגעה ו-Medemblik", items: ["הגעה ל-Schiphol בצהריים", "איסוף רכב ונסיעה ל-Medemblik", "טיול בנמל וטירת Radboud", "שייט אופציונלי וארוחת ערב קלילה"] },
+    2: { heading: "יום 2 – רביעי, 8 ביולי: Giethoorn ו-Dwarsgracht", items: ["יציאה מוקדמת ~07:30", "סיור ושייט בסירה חשמלית ב-Giethoorn", "אופציה א: עוד שייט ב-Dwarsgracht", "אופציה ב: הליכה ב-Dwarsgracht", "חזרה ל-Medemblik עד ~17:30"] },
+    3: { heading: "יום 3 – חמישי, 9 ביולי: Efteling", items: ["יציאה ~07:30, יום מלא בפארק", "יער האגדות, Droomvlucht, מגלגלות", "ארוחת ערב ומופע Aquanura אופציונלי", "חזרה מאוחרת ל-Medemblik"] },
+    4: { heading: "יום 4 – שישי, 10 ביולי: Edam, Volendam, Marken, Zaanse Schans", items: ["Edam — כפר גבינה", "Volendam — נמל וארוחת צהריים", "Marken — בתי עץ", "Zaanse Schans — טחנות וסדנאות"] },
+    5: { heading: "יום 5 – שבת, 11 ביולי: יום מקומי ב-Medemblik", items: ["בלי נסיעות ארוכות", "טיול בנמל ואופציונלי שייט/אופניים", "מנוחה וארוחת ערב"] },
+    6: { heading: "יום 6 – ראשון, 12 ביולי: הכנות", items: ["יום קל לפני אמסטרדם", "אריזת מזוודות", "ארוחת ערב מוקדמת"] },
+    7: { heading: "יום 7 – שני, 13 ביולי: Walibi → אמסטרדם", items: ["צ'ק-אאוט מ-Medemblik", "Walibi — מתקנים ומים", "נסיעה לאמסטרדם, צ'ק-אין", "טיול ערב ב-Dam Square"] },
+    8: { heading: "יום 8 – שלישי, 14 ביולי: NEMO, מוזיאון ימי", items: ["NEMO בבוקר — גג ומדע", "מוזיאון ימי אחר הצהריים", "שייט תעלות אופציונלי וארוחת ערב"] },
+    9: { heading: "יום 9 – רביעי, 15 ביולי: Ripley's וקניות", items: ["Ripley's ב-Dam 21", "קניות: Damrak, Kalverstraat, Leidseplein", "אריזה לטיסה וארוחת ערב"] },
+    10: { heading: "יום 10 – חמישי, 16 ביולי: יציאה", items: ["ארוחת בוקר וצ'ק-אאוט", "רכבת ל-Schiphol", "טיסה הביתה"] },
+  },
+};
+
+function getPackingGuide(lang) {
+  if (lang === "he") {
+    return {
+      overview: PACKING_GUIDE_HE.overview,
+      days: PACKING_GUIDE.days.map((d) => {
+        const tr = PACKING_GUIDE_HE.days[d.day];
+        return { ...d, heading: tr.heading, items: tr.items };
+      }),
+    };
+  }
+  return PACKING_GUIDE;
+}
+
 const TRIP_HE = {
   title: "טיול משפחתי להולנד",
   subtitle: "CanalCompass",
@@ -312,7 +354,8 @@ function getLocaleData(lang) {
       days: DAYS.map((d) => mergeLocalizedDay(d, DAY_HE[d.day])),
       packing: PACKING.map((p) => ({ ...p, label: PACKING_HE[p.id] || p.label })),
       badges: BADGES.map((b) => ({ ...b, name: BADGE_NAMES_HE[b.id] || b.name })),
+      packingGuide: getPackingGuide("he"),
     };
   }
-  return { trip: TRIP, days: DAYS, packing: PACKING, badges: BADGES };
+  return { trip: TRIP, days: DAYS, packing: PACKING, badges: BADGES, packingGuide: getPackingGuide("en") };
 }
