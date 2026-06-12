@@ -12,7 +12,7 @@ const PACKING_PLAN = {
   people: [
     {
       id: "dad",
-      label: "Dad (49)",
+      label: "Danny",
       emoji: "👨",
       essentials: [
         "Passport / ID + driving licence (rental car)",
@@ -26,7 +26,7 @@ const PACKING_PLAN = {
     },
     {
       id: "mum",
-      label: "Mum (48)",
+      label: "Hila",
       emoji: "👩",
       essentials: [
         "Passport / ID",
@@ -40,7 +40,7 @@ const PACKING_PLAN = {
     },
     {
       id: "teen",
-      label: "Teen (16)",
+      label: "Jon",
       emoji: "🧑",
       essentials: [
         "Passport / ID",
@@ -54,7 +54,7 @@ const PACKING_PLAN = {
     },
     {
       id: "boy12",
-      label: "Boy (12)",
+      label: "Ziv",
       emoji: "👦",
       essentials: [
         "Passport / ID",
@@ -68,7 +68,7 @@ const PACKING_PLAN = {
     },
     {
       id: "boy10",
-      label: "Boy (10)",
+      label: "Rom",
       emoji: "👦",
       essentials: [
         "Passport / ID",
