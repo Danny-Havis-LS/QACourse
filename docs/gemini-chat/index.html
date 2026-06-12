@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gemini Chat</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    [x-cloak] { display: none !important; }
+    .messages::-webkit-scrollbar { width: 6px; }
+    .messages::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  </style>
+</head>
+<body class="bg-slate-100 min-h-screen font-sans text-slate-800">
+
+<div
+  x-data="chatApp()"
+  x-init="init()"
+  x-cloak
+  class="mx-auto flex h-screen max-w-2xl flex-col p-4"
+>
+  <header class="mb-4 rounded-2xl bg-white px-5 py-4 shadow-sm ring-1 ring-slate-200">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-xl font-bold text-slate-900">Gemini Chat</h1>
+        <p class="text-xs text-slate-500">
+          Alpine.js · Gemini API · Browser storage
+          <span x-show="hasApiKey" class="ml-1 text-emerald-600">● key set</span>
+          <span x-show="!hasApiKey" class="ml-1 text-amber-600">● enter API key below</span>
+          · <a href="../" class="text-indigo-500 hover:underline">Holland trip</a>
+        </p>
+      </div>
+      <button
+        @click="clearHistory()"
+        :disabled="messages.length === 0 || loading"
+        class="rounded-lg px-3 py-1.5 text-sm text-slate-500 transition hover:bg-red-50 hover:text-red-600 disabled:opacity-40"
+      >
+        Clear history
+      </button>
+    </div>
+
+    <div class="mt-3 flex gap-2">
+      <div class="relative flex-1">
+        <input
+          :type="showKey ? 'text' : 'password'"
+          x-model="apiKey"
+          @input="saveApiKey()"
+          placeholder="Paste your Gemini API key..."
+          class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 pr-10 text-sm outline-none transition focus:border-indigo-400 focus:bg-white focus:ring-2 focus:ring-indigo-100"
+        />
+        <button
+          type="button"
+          @click="showKey = !showKey"
+          class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+          :aria-label="showKey ? 'Hide key' : 'Show key'"
+        >
+          <svg x-show="!showKey" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg>
+          <svg x-show="showKey" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+          </svg>
+        </button>
+      </div>
+      <button
+        x-show="hasApiKey"
+        @click="clearApiKey()"
+        class="rounded-xl border border-slate-200 px-3 py-2.5 text-sm text-slate-500 transition hover:bg-red-50 hover:text-red-600"
+      >
+        Clear key
+      </button>
+    </div>
+
+    <div class="mt-2 flex items-center gap-2">
+      <label for="model-select" class="shrink-0 text-xs font-medium text-slate-500">Model</label>
+      <select
+        id="model-select"
+        x-model="selectedModel"
+        @change="saveModel()"
+        class="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm outline-none transition focus:border-indigo-400 focus:bg-white focus:ring-2 focus:ring-indigo-100"
+      >
+        <template x-for="m in models" :key="m.id">
+          <option :value="m.id" x-text="m.label"></option>
+        </template>
+      </select>
+    </div>
+
+    <p class="mt-1.5 text-[11px] text-slate-400">
+      Get a key at
+      <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" class="text-indigo-500 hover:underline">Google AI Studio</a>.
+      Key and history stay in your browser only.
+    </p>
+  </header>
+
+  <div
+    x-show="error"
+    x-text="error"
+    class="mb-3 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700 ring-1 ring-red-100"
+  ></div>
+
+  <div
+    x-ref="messagesEl"
+    class="messages mb-4 flex-1 space-y-3 overflow-y-auto rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200"
+  >
+    <template x-if="messages.length === 0 && !loading">
+      <div class="flex h-full flex-col items-center justify-center text-center text-slate-400">
+        <p class="text-4xl">💬</p>
+        <p class="mt-3 font-medium">Start a conversation</p>
+        <p class="mt-1 text-sm">History saved in browser storage</p>
+      </div>
+    </template>
+
+    <template x-for="msg in messages" :key="msg.id">
+      <div :class="msg.role === 'user' ? 'flex justify-end' : 'flex justify-start'">
+        <div
+          :class="msg.role === 'user'
+            ? 'max-w-[85%] rounded-2xl rounded-br-md bg-indigo-600 px-4 py-2.5 text-sm text-white'
+            : 'max-w-[85%] rounded-2xl rounded-bl-md bg-slate-100 px-4 py-2.5 text-sm text-slate-800'"
+        >
+          <p class="whitespace-pre-wrap" x-text="msg.content"></p>
+          <p class="mt-1 text-[10px] opacity-60" x-text="formatTime(msg.createdAt)"></p>
+        </div>
+      </div>
+    </template>
+
+    <div x-show="loading" class="flex justify-start">
+      <div class="rounded-2xl rounded-bl-md bg-slate-100 px-4 py-3 text-sm text-slate-500">
+        <span class="inline-flex gap-1">
+          <span class="animate-bounce">●</span>
+          <span class="animate-bounce" style="animation-delay: 0.1s">●</span>
+          <span class="animate-bounce" style="animation-delay: 0.2s">●</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <form @submit.prevent="sendMessage()" class="flex gap-2">
+    <input
+      type="text"
+      x-model="input"
+      :disabled="loading || !hasApiKey"
+      :placeholder="hasApiKey ? 'Type a message...' : 'Enter your API key first...'"
+      class="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 disabled:opacity-50"
+    />
+    <button
+      type="submit"
+      :disabled="loading || !input.trim() || !hasApiKey"
+      class="rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+    >
+      Send
+    </button>
+  </form>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
