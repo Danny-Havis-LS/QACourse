@@ -1,5 +1,7 @@
 function tripApp() {
   return {
+    lang: "en",
+    ui: UI.en,
     trip: TRIP,
     days: DAYS,
     packing: PACKING,
@@ -11,15 +13,21 @@ function tripApp() {
     scavengerDone: {},
     earnedBadges: [],
     revealedTrivia: {},
-    kidsOpen: true,
 
-    tabs: [
-      { id: "overview", label: "Overview" },
-      { id: "itinerary", label: "Itinerary" },
-      { id: "kids", label: "🎮 Kids Zone" },
-      { id: "packing", label: "Packing" },
-      { id: "notes", label: "Notes" },
-    ],
+    get dir() {
+      return this.lang === "he" ? "rtl" : "ltr";
+    },
+
+    get tabs() {
+      const t = this.ui.tabs;
+      return [
+        { id: "overview", label: t.overview },
+        { id: "itinerary", label: t.itinerary },
+        { id: "kids", label: t.kids },
+        { id: "packing", label: t.packing },
+        { id: "notes", label: t.notes },
+      ];
+    },
 
     get daysUntil() {
       const dep = new Date("2026-07-07T00:00:00");
@@ -63,6 +71,8 @@ function tripApp() {
         if (badges) this.earnedBadges = JSON.parse(badges);
         const trivia = localStorage.getItem("canal-compass-trivia");
         if (trivia) this.revealedTrivia = JSON.parse(trivia);
+        const lang = localStorage.getItem("canal-compass-lang");
+        if (lang === "he" || lang === "en") this.setLang(lang, false);
       } catch { /* defaults */ }
 
       const today = new Date();
@@ -73,6 +83,19 @@ function tripApp() {
       }
 
       this.checkAllBadges();
+    },
+
+    setLang(lang, save = true) {
+      this.lang = lang;
+      this.ui = UI[lang] || UI.en;
+      const data = getLocaleData(lang);
+      this.trip = data.trip;
+      this.days = data.days;
+      this.packing = data.packing;
+      this.badges = data.badges;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
+      if (save) localStorage.setItem("canal-compass-lang", lang);
     },
 
     selectDay(n) {
@@ -136,15 +159,15 @@ function tripApp() {
       this.days.forEach((d) => this.checkBadgeForDay(d.day));
     },
 
-    togglePacking(item) {
-      const i = this.checkedPacking.indexOf(item);
-      if (i === -1) this.checkedPacking.push(item);
+    togglePacking(id) {
+      const i = this.checkedPacking.indexOf(id);
+      if (i === -1) this.checkedPacking.push(id);
       else this.checkedPacking.splice(i, 1);
       localStorage.setItem("canal-compass-packing", JSON.stringify(this.checkedPacking));
     },
 
-    isPacked(item) {
-      return this.checkedPacking.includes(item);
+    isPacked(id) {
+      return this.checkedPacking.includes(id);
     },
 
     saveNotes() {
@@ -167,14 +190,6 @@ function tripApp() {
       const d = 0.04;
       const bbox = `${dest.lng - d},${dest.lat - d},${dest.lng + d},${dest.lat + d}`;
       return `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(bbox)}&layer=mapnik&marker=${dest.lat}%2C${dest.lng}`;
-    },
-
-    handleKidLink(url) {
-      if (url === "#packing-tab") {
-        this.activeTab = "packing";
-        return false;
-      }
-      return true;
     },
   };
 }

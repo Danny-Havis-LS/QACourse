@@ -59,6 +59,8 @@ const DAYS = [
       teenTip: "Help navigate the rental car pickup — co-pilot duty starts today!",
     },
   },
+  {
+    day: 2,
     weekday: "Wednesday",
     date: "July 8",
     title: "Giethoorn & Dwarsgracht",
@@ -447,16 +449,16 @@ const DAYS = [
 ];
 
 const PACKING = [
-  "Passports / ID",
-  "EU Type C/F travel adapters",
-  "Rain jackets (Holland weather!)",
-  "Comfortable walking shoes",
-  "Layers for variable temps",
-  "OV-chipkaart or contactless payment card",
-  "Sunscreen & hats",
-  "Portable charger",
-  "Reusable water bottles",
-  "Swim gear for Walibi water attractions",
-  "Small daypack for theme parks",
-  "Motion sickness meds for boat rides",
+  { id: "passport", label: "Passports / ID" },
+  { id: "adapter", label: "EU Type C/F travel adapters" },
+  { id: "rain", label: "Rain jackets (Holland weather!)" },
+  { id: "shoes", label: "Comfortable walking shoes" },
+  { id: "layers", label: "Layers for variable temps" },
+  { id: "ov", label: "OV-chipkaart or contactless payment card" },
+  { id: "sunscreen", label: "Sunscreen & hats" },
+  { id: "charger", label: "Portable charger" },
+  { id: "bottle", label: "Reusable water bottles" },
+  { id: "swim", label: "Swim gear for Walibi water attractions" },
+  { id: "daypack", label: "Small daypack for theme parks" },
+  { id: "motion", label: "Motion sickness meds for boat rides" },
 ];
